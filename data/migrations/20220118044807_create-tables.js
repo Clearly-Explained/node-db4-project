@@ -1,11 +1,14 @@
 
 exports.up = async function(knex) {
   await knex.schema
-    .createTable('recipies', table => {
-        table.increments()
+    .createTable('recipies', tbl => {
+        tbl.increments('recipie_id')
+        tbl.string('recipie_name', 200).notNullable().unique()
     })
     .createTable('ingredients', table => {
-        table.increments()
+        table.increments('ingredient_id')
+        table.string('ingredient_name', 200).notNullable().unique()
+        table.string('ingredient_unit', 50)
     })
     .createTable('steps', table => {
         table.increments()
